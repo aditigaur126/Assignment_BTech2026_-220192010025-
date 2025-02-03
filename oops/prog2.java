@@ -47,5 +47,6 @@ public class prog2 {
         d.updateBreed(sc.nextLine());
         System.out.println("updated name is :" + d.getName());
         System.out.println("updated breed is :" + d.getBreed());
+        sc.close();
     }
 }

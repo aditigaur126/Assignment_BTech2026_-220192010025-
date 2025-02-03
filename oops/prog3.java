@@ -2,8 +2,6 @@
 // Calculate the area and perimeter of the rectangle.
 package oops;
 
-import java.util.*;
-
 class Rectangle {
     private int width;
     private int height;
