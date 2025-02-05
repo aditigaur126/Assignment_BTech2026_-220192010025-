@@ -5,7 +5,6 @@ class Employee {
     private String ename;
     private int salary;
     private String job;
-    private double sal = 0;
 
     public Employee(String ename, String job, int salary) {
         this.ename = ename;
