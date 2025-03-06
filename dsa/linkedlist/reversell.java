@@ -18,10 +18,10 @@ class reversell {
         Node prev = null;
         Node next;
         while (curr != null) {
-            next = curr.next;// to store the location of curr next
-            curr.next = prev;// to reverse (arrow ulta<-)
-            prev = curr;// backwards (ek step back->)
-            curr = next;// now the stored value will be reversed(ek step back->)
+            next = curr.next; // to store the location of curr next
+            curr.next = prev; // to reverse (arrow ulta<-)
+            prev = curr; // backwards (ek step back->)
+            curr = next; // now the stored value will be reversed(ek step back->)
         }
         return prev;
 
@@ -36,6 +36,46 @@ class reversell {
             System.out.print(temp.data);
             temp = temp.next;
         }
+    }
+
+    static Node swapinkpairs(Node head, int k) {
+        Node dummy = new Node(0);
+        dummy.next = head;
+        Node cur = head;
+        Node prev = dummy;
+        int count = 0;
+        while (cur != null) {
+            count++;
+            cur = cur.next;
+        }
+        while (count >= k) {
+            cur = prev.next;
+            Node next = cur.next;
+            for (int i = 1; i < k; i++) {
+                cur.next = next.next;
+                next.next = prev.next;
+                prev.next = next;
+                next = cur.next;
+            }
+            prev = cur;
+            count -= k;
+        }
+        return dummy.next;
+    }
+
+    static Node reverseInPair(Node head) {
+        Node dummy = new Node(0);
+        dummy.next = head;
+        Node prev = dummy;
+        while (prev.next != null && prev.next.next != null) {
+            Node first = prev.next;
+            Node sec = prev.next.next;
+            first.next = sec.next;
+            sec.next = first;
+            prev.next = sec;
+            prev = first;
+        }
+        return dummy.next;
     }
 
     public static void main(String[] args) {
@@ -55,6 +95,10 @@ class reversell {
         head = reverse(head);
         System.out.println("\nAfter reversal :");
         display(head);
+        System.out.println();
+
+        Node h2 = reverseInPair(head);
+        display(h2);
         sc.close();
 
     }

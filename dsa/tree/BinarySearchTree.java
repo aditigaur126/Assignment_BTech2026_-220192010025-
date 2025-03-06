@@ -98,6 +98,27 @@ public class BinarySearchTree {
         }
     }
 
+    void paths(Node root, ArrayList<Integer> path) {
+        if (root == null) {
+            return;
+        }
+        path.add(root.data);
+        if (root.left == null && root.right == null) {
+            printPath(path);
+        } else {
+            paths(root.left, path);
+            paths(root.right, path);
+        }
+    }
+
+    void printPath(ArrayList<Integer> list) {
+        for (int i = 0; i < list.size(); i++) {
+            System.out.print(list.get(i) + "->");
+        }
+        System.out.print("null");
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         BinarySearchTree b = new BinarySearchTree();
         Scanner sc = new Scanner(System.in);
@@ -120,6 +141,8 @@ public class BinarySearchTree {
         b.root = b.delete(b.root, 40);
         System.out.println("Inorder traversal after deleting 40:");
         b.inorder(b.root);
+        ArrayList<Integer> path = new ArrayList<>();
+        b.paths(b.root, path);
         sc.close();
     }
 }
